@@ -7,6 +7,9 @@ console.log('Welcome to the GitHub Avatar Downloader!');
 //arguments entered via terminal will populate repoOwner and repoName
 //authorization token is located in secret.js
 function getRepoContributors(repoOwner, repoName, cb) {
+  if (args[1] == null) {
+    return console.log('\n', 'Do not be lazy, add another argument');
+  }
   var options = {
     url: "https://api.github.com/repos/" + repoOwner + "/" + repoName + "/contributors",
     headers: {
@@ -26,10 +29,7 @@ function downloadImageByURL(url, filePath) {
 
 // call the functions and download the avatars
 getRepoContributors(args[0], args[1], function(err, result) {
-  if (args[1] == null) {
-    console.log('\n', 'Do not be lazy, add another argument');
-    throw err;
-  }
+  
   result.forEach(function(element) {
 
   downloadImageByURL(element.avatar_url, `./avatars/${element.login}`);

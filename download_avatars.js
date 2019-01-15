@@ -27,7 +27,8 @@ function downloadImageByURL(url, filePath) {
 // call the functions and download the avatars
 getRepoContributors(args[0], args[1], function(err, result) {
   if (args[1] == null) {
-    console.log('Do not be lazy, add another argument');
+    console.log('\n', 'Do not be lazy, add another argument');
+    throw err;
   }
   result.forEach(function(element) {
 
